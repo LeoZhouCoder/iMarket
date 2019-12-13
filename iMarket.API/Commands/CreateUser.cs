@@ -20,10 +20,10 @@ namespace iMarket.API.Commands
         [Required]
         [Range(typeof(bool), "true", "true", ErrorMessage = "Please accept the terms and conditions.")]
         public bool TermsConditionsAccepted { get; set; }
-        public CreateUser(string email)
+        /*public CreateUser()
         {
-            Email = string.IsNullOrEmpty(email) ? "" : email.ToLower();
-        }
+            //Email = string.IsNullOrEmpty(email) ? "" : email.ToLower();
+        }*/
     }
     public enum UserRole { Customer = 1, Wholesaler, Employee, Administrator }
 }

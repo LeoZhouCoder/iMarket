@@ -170,7 +170,6 @@ export default class LoginForm extends Component {
   };
 
   render() {
-    console.log("button: ", this.isDisabled());
     return (
       <Grid
         textAlign="center"

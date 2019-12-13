@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router';
+
 import { Layout } from './components/Layout';
-import { Home } from './components/Home';
 import LoginForm from './components/LoginForm';
-import { FetchData } from './components/FetchData';
-import { Counter } from './components/Counter';
+import ChatRoom from './components/ChatRoom';
 
 import './custom.css'
 
@@ -13,7 +12,7 @@ export default class App extends Component {
 
   render () {
     return (
-      <LoginForm/>
+      <ChatRoom/>
     );
   }
 }

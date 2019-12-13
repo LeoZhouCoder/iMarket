@@ -11,7 +11,7 @@ using Microsoft.Extensions.Hosting;
 using iMarket.API.Mongo;
 using iMarket.API.Contracts;
 using iMarket.API.Services;
-
+using iMarket.API.Auth;
 namespace iMarket.API
 {
     public class Startup
@@ -27,8 +27,11 @@ namespace iMarket.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddJwt(Configuration);
+            services.AddSingleton<IPasswordStorage, PasswordStorage>();
             services.AddMongoDB(Configuration);
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

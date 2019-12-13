@@ -3,20 +3,19 @@ using System;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-
-//using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-//using MongoDB.Bson;
-//using RawRabbit;
 using System.Collections.Generic;
 using iMarket.API.Commands;
-//using UserRole = Talent.Core.UserRole;
+using iMarket.API.Services;
 
 namespace iMarket.API.Controllers
 {
     public class AuthenticationController : Controller
-    {
-        public AuthenticationController() { }
+    { 
+        private readonly IAuthenticationService _authenticationService;
+        public AuthenticationController(IAuthenticationService authenticationService) { 
+            _authenticationService = authenticationService;
+        }
         public IActionResult Get()
         {
             return Content("Hello from iMarket Api");
@@ -36,7 +35,6 @@ namespace iMarket.API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> SignUp([FromBody]CreateUser command)
         {
-            // mongodb+srv://iMarket:Pa$$w0rd@cluster-oe4xu.mongodb.net/test?retryWrites=true&w=majority
             try
             {
                 if (!ModelState.IsValid)
@@ -46,27 +44,15 @@ namespace iMarket.API.Controllers
                         Message = ModelState.Values.SelectMany(e => e.Errors.Select(m => m.ErrorMessage))
                     });
                 }
-
-                //check if username is unique
-                /*bool isUniqueEmail = await _authenticationService.UniqueEmail(command.Email);
-                if (!isUniqueEmail)
-                {
-                    return BadRequest(new { Message = "This email address is already in use by another account." });
-                }*/
-
                 // Check if password and confirm password match
-                /*if (command.Password != command.ConfirmPassword)
+                if (command.Password != command.ConfirmPassword)
                 {
                     return BadRequest(new { Message = "The password fields don't match, please try again." });
-                }*/
+                }
 
-                //var authenticatedToken = new JsonWebToken();
-                //authenticatedToken = await _authenticationService.SignUp(command);
+                var authenticatedToken = await _authenticationService.SignUp(command);
 
-
-
-                //return Ok(new { Success = true, Token = authenticatedToken });
-                return Ok();
+                return Ok(new { Success = true, Token = authenticatedToken });
             }
             catch (ApplicationException e)
             {

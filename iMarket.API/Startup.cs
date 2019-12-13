@@ -58,7 +58,7 @@ namespace iMarket.API
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Authentication}/{action=Get}/{id?}");
+                    pattern: "{controller=Home}/{action=Get}/{id?}");
             });
         }
     }

@@ -45,7 +45,7 @@ export default class ChatRoom extends Component {
   }
 }
 
-const FixedMenuLayout = () => (
+/*const FixedMenuLayout = () => (
   <div>
     <Menu fixed="top" inverted>
       <Container>
@@ -177,4 +177,4 @@ const FixedMenuLayout = () => (
   </div>
 );
 
-export default FixedMenuLayout;
+export default FixedMenuLayout;*/

@@ -12,6 +12,7 @@ using iMarket.API.Mongo;
 using iMarket.API.Contracts;
 using iMarket.API.Services;
 using iMarket.API.Auth;
+using SignalRChat.Hubs;
 namespace iMarket.API
 {
     public class Startup
@@ -32,6 +33,7 @@ namespace iMarket.API
             services.AddMongoDB(Configuration);
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +62,7 @@ namespace iMarket.API
                     name: "default",
                     pattern: "{controller=Home}/{action=Get}/{id?}");
             });
+            //endpoints.MapHub<ChatHub>("/chatHub");
         }
     }
 }

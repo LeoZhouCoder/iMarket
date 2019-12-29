@@ -14,9 +14,9 @@ namespace SignalRChat.Hubs
             return Clients.Caller.SendAsync("ReceiveMessage", message);
         }
 
-        public Task SendMessageToGroup(string message)
+        public Task SendMessageToGroup(string group, string message)
         {
-            return Clients.Group("SignalR Users").SendAsync("ReceiveMessage", message);
+            return Clients.Group(group).SendAsync("ReceiveMessage", message);
         }
 
         public Task SendPrivateMessage(string user, string message)

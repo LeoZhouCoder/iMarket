@@ -30,7 +30,7 @@
             },
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development",
-                "ASPNETCORE_URLS": "http://192.168.1.8:60501"
+                "ASPNETCORE_URLS": "http://192.168.1.2:60501"
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/iMarket.API/Views"
@@ -62,7 +62,7 @@
             },
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development",
-                "ASPNETCORE_URLS": "http://192.168.1.8:60502"
+                "ASPNETCORE_URLS": "http://192.168.1.2:60502"
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/iMarket.CRM/Views"

@@ -77,9 +77,9 @@ namespace iMarket.API.Controllers
         /// <response code="200">Successful. User's credentials are valid</response>
         /// <response code="400">BadRequest. User input model is invalid</response> 
         /// <response code="401">Unauthorized. User's credentials are invalid</response> 
-        [ProducesResponseType(typeof(AuthenticationResult), (int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        //[ProducesResponseType(typeof(AuthenticationResult), (int)HttpStatusCode.OK)]
+        //[ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+        //[ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [HttpPost("signIn")]
         public async Task<IActionResult> SignIn([FromBody]LoginCommand command)
         {

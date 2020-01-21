@@ -74,18 +74,28 @@ export default class LoginForm extends Component {
       return (
         <Message>
           New to us?{" "}
-          <a href="#" onClick={this.handleClick}>
+          <button
+            type="button"
+            className="link-button"
+            onClick={this.handleClick}
+            color="teal"
+          >
             Sign Up
-          </a>
+          </button>
         </Message>
       );
     } else {
       return (
         <Message>
           Already have an account?{" "}
-          <a href="#" onClick={this.handleClick}>
+          <button
+            type="button"
+            className="link-button"
+            onClick={this.handleClick}
+            color="teal"
+          >
             Sign In
-          </a>
+          </button>
         </Message>
       );
     }
@@ -93,12 +103,12 @@ export default class LoginForm extends Component {
 
   isDisabled = () => {
     let { formData, errors } = this.state;
-    let disabled = false
+    let disabled = false;
     Object.keys(formData).forEach(function(key) {
       if (formData[key] === "") disabled = true;
     });
     Object.keys(errors).forEach(function(key) {
-      if (errors[key]) return disabled = true;
+      if (errors[key]) return (disabled = true);
     });
     return disabled;
   };
@@ -106,7 +116,7 @@ export default class LoginForm extends Component {
   handleClick = () => {
     this.setState({
       isLogin: !this.state.isLogin,
-      formData: this.resetFromData(!this.state.isLogin),
+      i: this.resetFromData(!this.state.isLogin),
       errors: {}
     });
   };
@@ -167,6 +177,31 @@ export default class LoginForm extends Component {
 
   handleClickButton = (e, data) => {
     console.log(this.state);
+    var response = this.postData("http://192.168.1.2:60501/auth/signIn", {
+      email: this.state.email,
+      password: this.state.password
+    });
+    console.log(response);
+  };
+
+  postData = async (url = "", data = {}) => {
+    const response = await fetch(url, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: data
+    })
+      .then(res => {
+        if (res.ok) {
+          return response.json();
+        } else {
+          console.log("response false: ", res);
+        }
+      })
+      .catch(error => console.log("error:", error));
   };
 
   render() {
